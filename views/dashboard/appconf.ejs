@@ -1,0 +1,22 @@
+<%- include include/header %>
+
+<div class="container home">
+	<ol class="breadcrumb">
+		<li><a href="/dashboard/">SeoCrawler</a></li>
+		<li><%= (type == 'setting' ? ('站点配置 APPID: ' + appid) : '新增站点') %></li>
+	</ol>
+    <div class="inline row">
+    	<form role="form" method="post">
+		  <div class="form-group">
+		    <label for="url">站点URL：</label>
+		    <input type="text" class="form-control" id="url" name="url" placeholder="请输入站点 URL" value="<%= (type == 'setting' ? url : "") %>">
+		  </div>
+		  <button type="submit" class="btn btn-primary">提交</button>
+		  <% if(type == 'setting') { %>
+		  <a class="btn btn-danger" href="/dashboard/app/del-<%=appid%>" onclick="javascript:return confirm('确定要删除吗？');">删除</a>
+		  <% } %>
+		</form>
+    </div>
+</div>
+
+<%- include include/footer %>

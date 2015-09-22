@@ -1,0 +1,45 @@
+<%- include include/header %>
+
+	<div class="container home">
+		<ol class="breadcrumb">
+			<li><a href="/dashboard/">SeoCrawler</a></li>
+			<li>站点面板</li>
+			<a class="btn btn-primary btn-xs pull-right" href="/dashboard/app/add">
+            	<span class="glyphicon glyphicon-plus"></span>
+                新增站点        
+            </a>
+		</ol>
+        <div class="inline row">
+        	<table class="table table-striped">
+			  <thead>
+		        <tr>
+		          <th>APPID</th>
+		          <th>站点URL</th>
+		          <th width="18%">操作</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		      <% if (apps && apps.length) { %>  
+				<% for(var i=0; i<apps.length; i++) { %>
+					<tr>
+      					<td><%= apps[i].appid %></td>
+      					<td><%= apps[i].url %></td>
+      					<td width="18%">
+      						<a class="btn btn-default btn-sm" href="/dashboard/app/<%= apps[i].appid %>-1">
+	      						<span class="glyphicon glyphicon-list-alt"></span> 
+	      						查看
+      						</a>
+      						<a class="btn btn-default btn-sm" href="/dashboard/app/setting-<%= apps[i].appid %>">
+	      						<span class="glyphicon glyphicon-cog"></span> 
+	      						配置
+      						</a>
+  						</td>
+	      			</tr>
+				<% } %>
+			  <% } %>
+		      </tbody>
+			</table>
+        </div>
+	</div>
+
+<%- include include/footer %>

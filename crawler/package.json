@@ -1,0 +1,15 @@
+{
+  "name": "seocrawler",
+  "description": "seocrawler",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "redis": "*",
+    "casperjs": "*",
+    "phantomjs": "*",
+    "async": "*",
+    "commander": "*",
+    "spooky": "*",
+    "ent": ""
+  }
+}

@@ -1,0 +1,51 @@
+<%- include include/header %>
+
+<div class="container home">
+	<ol class="breadcrumb">
+		<li><a href="/dashboard/">SeoCrawler</a></li>
+		<li>查看站点 APPID: <%= appid %></li>
+		<a class="btn btn-primary btn-xs pull-right"  href="/dashboard/app/setting-<%= appid %>">
+        	<span class="glyphicon glyphicon-cog"></span>
+        </a>
+		<button class="btn btn-xs pull-right btn-run">
+			<% if(state == 1) { %>
+        	<span class="glyphicon glyphicon-play"></span>
+        	执行中
+        	<% } else { %>
+        	<span class="glyphicon glyphicon-stop"></span>
+        	执行完毕
+        	<% } %>
+        </button>
+	</ol>
+	<div class="inline row">
+			<a href="/dashboard/app/<%= appid %>-1" class="btn <%= type == 1 ? "btn-primary" : "btn-default btn-white" %>">已抓页面</a>
+			<a href="/dashboard/app/<%= appid %>-2" class="btn <%= type == 2 ? "btn-primary" : "btn-default btn-white" %>">错误页面</a>
+			<a href="/dashboard/app/<%= appid %>-3" class="btn <%= type == 3 ? "btn-primary" : "btn-default btn-white" %>">抓取队列</a>
+		</div>
+    <div class="inline row">
+    	<table class="table table-striped">
+		  <thead>
+	        <tr>
+	          <th width="10%">#</th>
+	          <th>抓取URL</th>
+	          <th width="10%">状态</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      <% var stateArr = {"-1": "出错", "0": "排队中...", "1": "抓取中...", "2": "抓取成功"} %>
+	      <% var stateStyleArr = {"-1": "red", "0": "gray", "1": "blue", "2": "green"} %>
+      	  <% if (list && list.length) { %>  
+				<% for(var i=0; i<list.length; i++) { %>
+					<tr>
+      					<td width="10%"><%= i+1 %></td>
+      					<td><%= list[i].url %></td>
+      					<td width="10%" style="color: <%= stateStyleArr[list[i].state] %>;"><%= stateArr[list[i].state] %></td>
+	      			</tr>
+				<% } %>
+			  <% } %>
+	      </tbody>
+		</table>
+    </div>
+</div>
+
+<%- include include/footer %>
